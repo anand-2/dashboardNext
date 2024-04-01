@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react';
-import { Group, Code } from '@mantine/core';
+import { Group, Code,Divider } from '@mantine/core';
 import {
   IconBellRinging,
   IconFingerprint,
@@ -28,7 +28,7 @@ const data = [
 ];
 
  function SideBar() {
-  const [active, setActive] = useState('Billing');
+  const [active, setActive] = useState('Dashboard');
 
   const links = data.map((item) => (
     <a
@@ -53,8 +53,10 @@ const data = [
       <div className={classes.navbarMain}>
         <Group className={classes.header} >
         <IconLayoutDashboardFilled className={classes.headerIcon} />
-        <h1 style={{color:'white'}}>Dashboard</h1>          
+        <h1 style={{color:'white'}}>Dashboard</h1>                 
         </Group>
+        <Divider my="xs" mb='1rem' />
+
         {links}
         <div  className={classes.footer}>
                <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>

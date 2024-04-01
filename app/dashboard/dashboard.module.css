@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     background-color: #404047;
+    position: sticky;
     border-radius: 0px 10px 10px 0px;
     overflow-x: hidden;
     font-family: "Roboto", sans-serif;
@@ -16,12 +17,14 @@
   
   .navbarMain {
     flex: 1;
+    position: sticky;
+
     
   }
   
   .header {
     padding-bottom: var(--mantine-spacing-md);
-    margin-bottom: calc(var(--mantine-spacing-md) * 1.5);
+      /* margin-bottom: calc(var(--mantine-spacing-md) * 1.5); */
     border-bottom: rem(1px) solid var(--mantine-color-blue-7);
     
   }
@@ -88,6 +91,14 @@
 
 }
 
+.dashDesc{
+  flex-direction: row;
+  display: flex;
+  color: #F0F2F5;
+  font-family: "Roboto", sans-serif;
+
+}
+
 .CardInfoName{
   justify-self: right;
   
@@ -100,4 +111,15 @@
 
 .cardIcon{
   color: white;
+}
+
+.cardHover{
+  justify-content:center;
+  display:flex;
+  align-items:center;
+  position: absolute;
+   margin-top: -30px;
+  z-index: 100;
+  border-radius:50px;
+  box-shadow: rgba(0, 0, 0, 0.14) 0rem 0.25rem 1.25rem 0rem, rgba(64, 64, 64, 0.4) 0rem 0.4375rem 0.625rem -0.3125rem;
 }

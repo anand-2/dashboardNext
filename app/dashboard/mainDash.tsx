@@ -1,4 +1,4 @@
-import { Card,Autocomplete, Box } from '@mantine/core'
+import { Card,Autocomplete, Box,Divider } from '@mantine/core'
 import React,{useState} from 'react'
 import classes from "./dashboard.module.css"
 import {IconHomeFilled,IconSearch,IconSettingsFilled,IconUserFilled,IconBellFilled} from "@tabler/icons-react"
@@ -43,13 +43,13 @@ function mainDash() {
     <div style={{display:'flex',flexDirection:'row' ,gap:'1rem'}}>
     {data?.map((item: DataItem) => {
                 return (
-                    <div key={item.name} >                         
-                        <Card shadow='sm' radius='lg' w='245px' h='130px'>
+                    <div key={item.name}>                         
+                        <Card pos='static' mt='1.5rem' shadow='md' radius='md' w='245px' h='130px'>
                           <div style={{display:'flex',flexDirection:'column'}}>
 
                             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
                               <div>
-                                <Box w='64px' h='64px' style={{backgroundImage:item.color,justifyContent:'center',display:'flex',alignItems:'center',borderRadius:'10px'}}><item.icon className={classes.cardIcon}/></Box>                                
+                                <Box className={classes.cardHover} w='64px' h='64px'  style={{backgroundImage:item.color}}><item.icon className={classes.cardIcon}/></Box>                                
                               </div>
                               <div style={{textAlign:'right'}}>
                                 <span style={{ color:'#7B809A',fontSize:'15px',fontWeight:'300'}}>{item.name}</span><br></br>
@@ -57,8 +57,11 @@ function mainDash() {
                               </div>
                             </div>
                              
-                              <hr color='black' style={{width :'50px'}}></hr>  
-                              <div>f</div>
+                            <Divider variant='dashed' my="sm" w='150px' style={{alignSelf:'center'}} color='#EBEDF0'/>
+                            {item?.profit && <div className={classes.dashDesc}>
+                              <div style={{color:'#6EAF50',fontSize:'13px',fontWeight:'600',paddingLeft:'10px'}}>+{item?.profit}%</div>
+                            <span style={{color:'#7B809A',fontSize:'14px',paddingLeft:'7px'}}>than last month</span>
+                            </div>}
                           </div>
                         </Card>
                     </div>
