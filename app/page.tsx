@@ -5,7 +5,6 @@ import {motion} from "framer-motion"
 import { useState } from 'react'
 import apple from "../public/apple.png"
 import '@mantine/core/styles.css';
-import '@mantine/charts/styles.css';
 
 
 export default function Home() {
