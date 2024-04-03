@@ -1,11 +1,13 @@
 import { Card,Autocomplete, Box,Divider, Grid, GridCol, SimpleGrid } from '@mantine/core'
 import React,{useState} from 'react'
 import classes from "./dashboard.module.css"
-import {IconHomeFilled,IconSearch,IconSettingsFilled,IconUserFilled,IconBellFilled, IconMenu2} from "@tabler/icons-react"
+import {IconHomeFilled,IconSearch,IconSettingsFilled,IconUserFilled,IconBellFilled, IconLayoutSidebarRightCollapse,IconLayoutSidebarLeftCollapse} from "@tabler/icons-react"
 import {data,DataItem} from "./data"
 
 type Props={
   buttonShow : boolean;
+  setOpened : any;
+  opened : boolean;
 }
 
 function mainDash(props : Props) {
@@ -39,15 +41,21 @@ function mainDash(props : Props) {
             <IconUserFilled color='#9FA8B7' size='22px'/>
             <IconSettingsFilled color='#9FA8B7' size='22px'/>
             <IconBellFilled color='#9FA8B7' size='22px'/>
-            {props.buttonShow && <IconMenu2 color='#9FA8B7' size='22px'/>}
+            <Box hiddenFrom='lg' onClick={()=>{props.setOpened(!props.opened)}}>
+              {
+                !props.opened ? <IconLayoutSidebarLeftCollapse  style={{alignSelf:'center',marginTop:'5px',cursor:'pointer'}}  color='#9FA8B7' size='22px'/> :
+                <IconLayoutSidebarRightCollapse  style={{alignSelf:'center',marginTop:'5px',cursor:'pointer'}}  color='#9FA8B7' size='22px'/>
+              }
+              </Box>
 
             
       </div>      
     </Card>
     <SimpleGrid
                         cols={{ base: 1,xs:2, sm: 2, lg: 4 }}
-                        spacing={{ base: 100, sm: 'xl' }}
-                        verticalSpacing={{ base: 'md', sm: 'xl' }}                        
+                        spacing={{ base: 100, sm: 'xl' }}                        
+                        verticalSpacing={{ base: 'md', sm: 'xl' }} 
+                        style={{justifyItems:'center'}}                       
                       >     
     {data?.map((item: DataItem) => {
                 return (                   

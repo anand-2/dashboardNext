@@ -9,16 +9,18 @@ import { SimpleGrid, Skeleton, Container, Stack, useMantineTheme, px, Grid, Grid
 
 function page() {
   const [buttonShow,setButtonShow] =useState(false)
+  const [opened, setOpened] = useState(false);
+
   return (
     <div style={{backgroundColor:'#F0F2F5',overflow:'hidden'}}>   
     
 
     <Grid>
       <GridCol span={{ base: 12, xs: 2.5 }} style={{position:'fixed',display:'flex'}}> 
-      <SideBar setButtonShow={setButtonShow}></SideBar>
+      <SideBar opened={opened} buttonShow={buttonShow} setOpened={setOpened} setButtonShow={setButtonShow}></SideBar>
       </GridCol>
-      <GridCol span={{ base: 12 , xs: 9.5 }} style={{marginLeft:!buttonShow ? '270px' : '0px' }}>
-      <MainDash buttonShow={buttonShow}></MainDash>
+      <GridCol span={{ base: 12 , xs: 9.5 }} ml={{lg:'270px',sm:'70px',md:'270px',xl:'270px',xs:'70px'}}>
+      <MainDash opened={opened} setOpened={setOpened} buttonShow={buttonShow}></MainDash>
         <GraphCard></GraphCard>
 
       </GridCol>

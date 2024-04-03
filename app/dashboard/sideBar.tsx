@@ -32,12 +32,14 @@ const data = [
 
 type Props = {
   setButtonShow: any;
+  opened : boolean;
+  setOpened : any;
+  buttonShow : boolean;
 }
 
  function SideBar(props: Props) {
   const [active, setActive] = useState('Dashboard');
-  const [opened, setOpened] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(props.opened);
 
 
   const links = data.map((item) => (
@@ -58,22 +60,22 @@ type Props = {
   ));
 
   const handleClose = () => {
-    setOpened(false);
+    props.setOpened(false);
   };
 
 
   useEffect(() => {
     const handleResize = () => {
-      const isSmall = window.innerWidth <= 768;
+      const isSmall = window.innerWidth <= 992;
       setIsSmallScreen(isSmall);
       
-      if (!isSmall && !opened) {
-        setOpened(true);    
+      if (!isSmall && !props.opened) {
+        props.setOpened(true);    
         props.setButtonShow(false)    
       }
       
-      if (isSmall && opened) {
-        setOpened(false);
+      if (isSmall && props.opened && !props.buttonShow) {
+        props.setOpened(false);
         props.setButtonShow(true)   
       }
     };
@@ -84,21 +86,21 @@ type Props = {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [opened]);
+  }, [props.opened]);
 
   return (
   
  <>
     <Drawer
- opened={isSmallScreen ? false : opened}
- size='16rem'
- closeOnEscape={false}
- lockScroll={false}
- onClose={handleClose}
-  padding="0px"
- withCloseButton={false} 
- withOverlay={false}
- closeOnClickOutside={true}
+    opened={props.opened}
+    size='16rem'            
+    closeOnEscape={false}
+    lockScroll={false}
+    onClose={handleClose}
+      padding="0px"
+    withCloseButton={false} 
+    withOverlay={false}
+    closeOnClickOutside={true}
  >
     <nav className={classes.navbar}>
     <div className={classes.navbarMain}>
