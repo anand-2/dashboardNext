@@ -1,16 +1,19 @@
-import { Card,Autocomplete, Box,Divider } from '@mantine/core'
+import { Card,Autocomplete, Box,Divider, Grid, GridCol, SimpleGrid } from '@mantine/core'
 import React,{useState} from 'react'
 import classes from "./dashboard.module.css"
-import {IconHomeFilled,IconSearch,IconSettingsFilled,IconUserFilled,IconBellFilled} from "@tabler/icons-react"
+import {IconHomeFilled,IconSearch,IconSettingsFilled,IconUserFilled,IconBellFilled, IconMenu2} from "@tabler/icons-react"
 import {data,DataItem} from "./data"
 
+type Props={
+  buttonShow : boolean;
+}
 
-function mainDash() {
+function mainDash(props : Props) {
 
   // const [cardInfo,setCardINfo] = useState({})
   return (
     <div style={{padding:'2rem 1rem 1rem 1rem'}} className={classes.mainDash}>        
-    <Card className={classes.dashCard}>
+    <Card  className={classes.dashCard} >
       <div style={{flexDirection:'column',display:'flex'}}>
         <div  style={{flexDirection:'row',display:'flex',gap:'10px'}}>
           <IconHomeFilled color='#9FA8B7' size='17px' /> <span style={{fontSize:'14px',fontFamily:'monospace',color:'#9FA8B7'}}>/</span>
@@ -36,16 +39,24 @@ function mainDash() {
             <IconUserFilled color='#9FA8B7' size='22px'/>
             <IconSettingsFilled color='#9FA8B7' size='22px'/>
             <IconBellFilled color='#9FA8B7' size='22px'/>
+            {props.buttonShow && <IconMenu2 color='#9FA8B7' size='22px'/>}
 
             
       </div>      
     </Card>
-    <div style={{display:'flex',flexDirection:'row' ,gap:'1rem'}}>
+    <SimpleGrid
+                        cols={{ base: 1,xs:2, sm: 2, lg: 4 }}
+                        spacing={{ base: 100, sm: 'xl' }}
+                        verticalSpacing={{ base: 'md', sm: 'xl' }}                        
+                      >     
     {data?.map((item: DataItem) => {
-                return (
-                    <div key={item.name}>                         
+                return (                   
+
+                       
                         <Card pos='static' mt='1.5rem' shadow='md' radius='md' w='245px' h='130px'>
-                          <div style={{display:'flex',flexDirection:'column'}}>
+                          <Grid>
+                            <GridCol>
+
 
                             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
                               <div>
@@ -56,18 +67,22 @@ function mainDash() {
                                 <span style={{ color:'#344767',fontSize:'1.5rem',fontWeight:'700'}}>{item.value}</span>
                               </div>
                             </div>
+
                              
                             <Divider variant='dashed' my="sm" w='150px' style={{alignSelf:'center'}} color='#EBEDF0'/>
                             {item?.profit && <div className={classes.dashDesc}>
                               <div style={{color:'#6EAF50',fontSize:'13px',fontWeight:'600',paddingLeft:'10px'}}>+{item?.profit}%</div>
                             <span style={{color:'#7B809A',fontSize:'14px',paddingLeft:'7px'}}>than last month</span>
                             </div>}
-                          </div>
+                            </GridCol>
+
+                          </Grid>
                         </Card>
-                    </div>
+                        
                 );
             })}
-    </div>
+                                    </SimpleGrid>
+
     </div>
   )
 }

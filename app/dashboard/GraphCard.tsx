@@ -1,5 +1,5 @@
 'use client'
-import { Card } from '@mantine/core';
+import { Card, SimpleGrid } from '@mantine/core';
 import { grossSales, netReturn,convRate } from './MOCK_DATA';
 import { BasePrivateKeyEncodingOptions } from 'crypto';
 import ReactEcharts from "echarts-for-react"; 
