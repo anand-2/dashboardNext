@@ -5,6 +5,7 @@ import SideBar from "./sideBar"
 import MainDash from "./mainDash"
 import GraphCard from "./GraphCard"
 import { SimpleGrid, Skeleton, Container, Stack, useMantineTheme, px, Grid, GridCol } from '@mantine/core';
+import bg from "./f0f2f5.png"
 
 
 function page() {
@@ -12,7 +13,7 @@ function page() {
   const [opened, setOpened] = useState(false);
 
   return (
-    <div style={{backgroundColor:'#F0F2F5',overflow:'hidden'}}>   
+    <div style={{backgroundColor:'#F0F2F5',height:'100vh',position:'relative',overflowY:'auto',overflowX:'hidden'}}>   
     
 
     <Grid>
